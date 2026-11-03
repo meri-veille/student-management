@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Interactive Webpage</title>
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --btn-bg: #3300ff;
+            --btn-text: #ffffff;
+        }
+
+
+        [data-theme="dark"] {
+            --bg-color: #18191a;
+            --text-color: #e4e6eb;
+            --card-bg: #242526;
+            --btn-bg: #2f80ed;
+            --btn-text: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            text-align: center;
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .clock {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+            letter-spacing: 1px;
+            color: var(--btn-bg);
+        }
+
+        button {
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Hello, World!</h1>
+        <p>Welcome to your local index.html test file.</p>
+        
+        <div class="clock" id="digitalClock">00:00:00</div>
+        
+        <button id="themeToggle">Toggle Dark Mode</button>
+    </div>
+
+    <script>
+        // Digital Clock Logic
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('digitalClock').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial run
+
+        // Dark Mode Logic
+        const toggleButton = document.getElementById('themeToggle');
+        toggleButton.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
